@@ -1,32 +1,76 @@
-# React + TypeScript + Vite
+# Task Habit Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern, responsive productivity application designed to help users organize their daily workflow, maintain consistency, and track progress over time.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎯 Product Description
 
-## React Compiler
+Build a modern, responsive Task Habit Tracker that helps users:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Organize daily tasks.**
+* **Manage task priorities and deadlines.**
+* **Build consistent daily habits.**
+* **Track habit completion and streaks.**
+* **Monitor productivity and progress.**
+* **Understand their weekly performance.**
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 💡 Core Design Philosophy: Tasks vs. Habits
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+A fundamental architectural principle of this application is that **Tasks and Habits are treated as separate concepts**:
+
+| Concept | Nature | Lifespan | Tracking Metric |
+| :--- | :--- | :--- | :--- |
+| **Tasks** | Finite activities | Once done, they are checked off and marked complete. | Completion status (`completed: boolean`), priority, and due dates. |
+| **Habits** | Recurring routines | Never truly "done"; they repeat daily or weekly. | Date-specific completion history (`completedDates: string[]`) and consecutive streaks. |
+
+---
+
+## 🚀 Tech Stack
+
+* **Frontend**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+* **Build Tool**: [Vite 8](https://vitejs.dev/)
+* **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with `@tailwindcss/vite`
+* **Routing**: [React Router](https://reactrouter.com/)
+* **Icons**: [Lucide React](https://lucide.dev/)
+* **Linter**: [Oxlint](https://oxc.rs/docs/guide/usage/linter)
+
+---
+
+## 🛠️ Project Structure
+
+```text
+src/
+├── components/          # Reusable UI elements
+│   ├── Navbar.tsx       # App navigation header with route indicator
+│   └── tasks/           # Task components (TaskItem, TaskFormModal)
+├── hooks/
+│   └── useLocalStorage.ts # Custom hook for local storage persistence
+├── pages/
+│   ├── DashboardPage.tsx # Overview, metrics, and core concepts
+│   ├── TasksPage.tsx    # To-do lists, priority filters, search, and progress
+│   └── HabitsPage.tsx   # Habit tracker and streak monitoring
+├── types/
+│   └── index.ts         # TypeScript models for Task, Habit, Priority, etc.
+├── App.tsx              # Application shell with React Router routes
+├── index.css            # Tailwind CSS v4 directives and theme variables
+└── main.tsx             # React entry point
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 💻 Getting Started
+
+### Development
+```bash
+npm install
+npm run dev
+```
+
+### Production Build & Lint
+```bash
+npm run build
+npm run lint
+```
