@@ -1,19 +1,24 @@
- function App() {
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import { Navbar } from './components/Navbar';
+import { DashboardPage } from './pages/DashboardPage';
+import { TasksPage } from './pages/TasksPage';
+import { HabitsPage } from './pages/HabitsPage';
+
+export function App() {
   return (
-    <main className="min-h-screen bg-app p-6">
-      <div className="mx-auto max-w-7xl">
-
-        <h1 className="text-3xl font-bold text-brand-600">
-          Task Habit Tracker
-        </h1>
-
-        <p className="mt-2 text-muted">
-          Plan your tasks. Build your habits.
-          Track your progress.
-        </p>
-
+    <BrowserRouter>
+      <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
+        <Navbar />
+        <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+          <Routes>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/tasks" element={<TasksPage />} />
+            <Route path="/habits" element={<HabitsPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
       </div>
-    </main>
+    </BrowserRouter>
   );
 }
 
